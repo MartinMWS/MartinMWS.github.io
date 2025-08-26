@@ -42,6 +42,25 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
 
+<!-- --- AUDIO PLAYER --- -->
+    <!-- Replace "YOUR_MP3_FILE.mp3" with the path to your audio file. -->
+    <!-- Note: Modern browsers may block autoplay until the user interacts with the page. -->
+
+    <!-- OPTION 1: Play the audio ONCE on page load (Enabled by default) -->
+    <audio autoplay>
+        <source src="./taliban-button_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- OPTION 2: Play the audio on a LOOP (To enable, remove the comment tags below and comment out Option 1) -->
+    <!--
+    <audio autoplay loop>
+        <source src="YOUR_MP3_FILE.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    -->
+
+    
     <div class="w-full max-w-4xl mx-auto">
         <!-- Header Section -->
         <header class="text-center mb-8">
