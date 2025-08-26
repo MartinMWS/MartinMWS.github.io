@@ -53,10 +53,18 @@
     -->
     <!-- OPTION 2: Play the audio on a LOOP -->
     
-    <audio autoplay loop>
-        <source src="./taliban-button_1.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop>
+        <source src="taliban-button_1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <script>
+        document.addEventListener("click", () => {
+          const audio = document.getElementById("bg-music");
+          audio.volume = 1.0; // make sure it's not muted
+          audio.play().catch(err => console.log("Play failed:", err));
+        }, { once: true });
+      </script>
     
 
     
