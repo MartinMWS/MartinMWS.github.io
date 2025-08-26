@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caliban Prime Countdown</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+        }
+        .timer-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .timer-unit {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #bf95f9;
+        }
+        .timer-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #a0a0a0;
+        }
+        .relic-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+
+    <div class="w-full max-w-4xl mx-auto">
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-bold text-white mb-2">Caliban Prime Arrives</h1>
+            <p class="text-lg text-gray-400">The heir of twin kingdoms emerges.</p>
+        </header>
+
+        <!-- Countdown Timer -->
+        <div id="countdown-container" class="timer-box mb-12">
+            <div id="timer" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div>
+                    <div id="days" class="timer-unit">00</div>
+                    <div class="timer-label">Days</div>
+                </div>
+                <div>
+                    <div id="hours" class="timer-unit">00</div>
+                    <div class="timer-label">Hours</div>
+                </div>
+                <div>
+                    <div id="minutes" class="timer-unit">00</div>
+                    <div class="timer-label">Minutes</div>
+                </div>
+                <div>
+                    <div id="seconds" class="timer-unit">00</div>
+                    <div class="timer-label">Seconds</div>
+                </div>
+            </div>
+            <div id="release-message" class="hidden mt-6 text-3xl font-bold text-green-400">
+                Caliban Prime has been released!
+            </div>
+        </div>
+
+        <!-- Relic Pack Information -->
+        <div class="space-y-8">
+            <h2 class="text-3xl font-bold text-center text-white">Relic Pack Farming Locations</h2>
+
+            <!-- Relic Pack Source 1 -->
+            <div class="relic-card">
+                <h3 class="text-2xl font-semibold text-violet-300 mb-2">Syndicate Relic Packs</h3>
+                <p class="text-gray-300">
+                    You can purchase Relic Packs from any of the 6 main Syndicates (Steel Meridian, Arbiters of Hexis, Cephalon Suda, The Perrin Sequence, Red Veil, New Loka) for <strong class="text-white">20,000 Standing</strong> each. This is one of the most reliable ways to get new relics on release day.
+                </p>
+            </div>
+
+            <!-- Relic Pack Source 2 -->
+            <div class="relic-card">
+                <h3 class="text-2xl font-semibold text-violet-300 mb-2">Steel Path Honors (Teshin)</h3>
+                <p class="text-gray-300">
+                    Visit Teshin in any Relay and browse his Steel Path Honors. You can purchase a pack of 3 random relics for <strong class="text-white">15 Steel Essence</strong>. This is a great option if you regularly play Steel Path missions.
+                </p>
+            </div>
+
+            <!-- Relic Pack Source 3 -->
+            <div class="relic-card">
+                <h3 class="text-2xl font-semibold text-violet-300 mb-2">Void Trader (Baro Ki'Teer)</h3>
+                <p class="text-gray-300">
+                    While not always available, when Baro Ki'Teer visits, he sometimes sells Axi relic packs. Keep an eye on his inventory every two weeks!
+                </p>
+            </div>
+             <!-- Relic Pack Source 4 -->
+            <div class="relic-card">
+                <h3 class="text-2xl font-semibold text-violet-300 mb-2">In-Game Market</h3>
+                <p class="text-gray-300">
+                    You can buy relic packs directly from the in-game market for Platinum. This is the fastest way, but it will cost you premium currency.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- COUNTDOWN TIMER LOGIC ---
+
+        // SET THE RELEASE DATE AND TIME HERE
+        // The format is "YYYY-MM-DDTHH:MM:SS"
+        // Based on typical Warframe updates, it's usually around 2:00 PM ET.
+        // Let's set it for August 26, 2025, at 11:00 AM Pacific Time (PT).
+        const releaseDate = new Date("2025-08-26T11:00:00-07:00").getTime();
+
+        const timerInterval = setInterval(function() {
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the release date
+            const distance = releaseDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the respective elements
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            // If the countdown is finished, show the release message
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("timer").classList.add("hidden");
+                document.getElementById("release-message").classList.remove("hidden");
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
